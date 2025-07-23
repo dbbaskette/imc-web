@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Megacorp - Your Trusted Partner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-image: url('https://placehold.co/1920x1080/003366/FFFFFF?text=Secure+Family+in+Front+of+Home');
+            background-size: cover;
+            background-position: center;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        /* Modal styles */
+        .modal-backdrop {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-panel {
+            transition: all 0.3s ease-in-out;
+        }
+        /* Chat bubble */
+        #chat-bubble {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 40; /* Below modals */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-800">
+                <i class="fas fa-shield-alt mr-2"></i>Insurance Megacorp
+            </a>
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#insurance" class="text-gray-600 hover:text-blue-700">Insurance</a>
+                <a href="#claims" class="text-gray-600 hover:text-blue-700">Claims</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-700">About Us</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-700">Contact</a>
+            </div>
+            <!-- Desktop Auth Links -->
+            <div id="desktop-auth-links" class="hidden lg:flex items-center space-x-4">
+                <a href="#" id="login-link" class="text-gray-600 hover:text-blue-700">Log In</a>
+                <a href="#quote" class="bg-yellow-400 text-blue-900 font-semibold px-5 py-2 rounded-full hover:bg-yellow-500 cta-button">Get a Quote</a>
+            </div>
+            <button id="mobile-menu-button" class="lg:hidden text-gray-600 hover:text-blue-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4">
+            <a href="#insurance" class="block py-2 text-gray-600 hover:text-blue-700">Insurance</a>
+            <a href="#claims" class="block py-2 text-gray-600 hover:text-blue-700">Claims</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-blue-700">About Us</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-blue-700">Contact</a>
+            <hr class="my-2">
+            <!-- Mobile Auth Links -->
+            <div id="mobile-auth-links">
+                <a href="#" id="mobile-login-link" class="block py-2 text-gray-600 hover:text-blue-700">Log In</a>
+                <a href="#quote" class="block mt-2 bg-yellow-400 text-blue-900 font-semibold px-5 py-2 rounded-full text-center hover:bg-yellow-500 cta-button">Get a Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white">
+        <div class="bg-black bg-opacity-50 min-h-[60vh] flex items-center">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Protection for what matters most.</h1>
+                <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Fast, fair, and hassle-free insurance from a partner you can trust. Get a personalized quote in minutes.</p>
+                <div id="quote" class="bg-white p-6 md:p-8 rounded-xl shadow-2xl max-w-4xl mx-auto text-gray-800">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-800">Start Your Free Quote</h2>
+                    <form class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="insurance-type" class="block text-sm font-medium text-gray-700 text-left">Insurance Type</label>
+                            <select id="insurance-type" name="insurance-type" class="mt-1 block w-full pl-3 pr-10 py-3 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                <option>Auto Insurance</option>
+                                <option>Homeowners Insurance</option>
+                                <option>Renters Insurance</option>
+                                <option>Life Insurance</option>
+                                <option>Business Insurance</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="zip-code" class="block text-sm font-medium text-gray-700 text-left">ZIP Code</label>
+                            <input type="text" name="zip-code" id="zip-code" class="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your ZIP Code">
+                        </div>
+                        <div class="md:pt-6">
+                            <button type="submit" class="w-full bg-blue-700 text-white font-bold py-3 px-6 rounded-md hover:bg-blue-800 cta-button text-lg">Start Quote</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Products Section -->
+    <section id="insurance" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Insurance Products</h2>
+                <p class="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">Find the right coverage for your life. We offer a wide range of personal and business insurance products.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Auto Insurance -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-blue-700 mb-4"><i class="fas fa-car fa-3x"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Auto Insurance</h3>
+                    <p class="text-gray-600 mb-4">Coverage for your car, truck, or van. Get protection on the road with our comprehensive auto policies.</p>
+                    <a href="#" class="font-semibold text-blue-700 hover:text-blue-900">Learn More &rarr;</a>
+                </div>
+                <!-- Home Insurance -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-blue-700 mb-4"><i class="fas fa-home fa-3x"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Home Insurance</h3>
+                    <p class="text-gray-600 mb-4">Protect your biggest investment. Our policies cover your home and belongings from unexpected events.</p>
+                    <a href="#" class="font-semibold text-blue-700 hover:text-blue-900">Learn More &rarr;</a>
+                </div>
+                <!-- Life Insurance -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-blue-700 mb-4"><i class="fas fa-heart fa-3x"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Life Insurance</h3>
+                    <p class="text-gray-600 mb-4">Secure your family's financial future. Find a life insurance plan that fits your needs and budget.</p>
+                    <a href="#" class="font-semibold text-blue-700 hover:text-blue-900">Learn More &rarr;</a>
+                </div>
+                <!-- Business Insurance -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-blue-700 mb-4"><i class="fas fa-briefcase fa-3x"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Business Insurance</h3>
+                    <p class="text-gray-600 mb-4">From small businesses to large enterprises, we have the coverage to protect your company.</p>
+                    <a href="#" class="font-semibold text-blue-700 hover:text-blue-900">Learn More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 md:py-24 bg-blue-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">What Our Customers Say</h2>
+                <p class="text-lg text-gray-600 mt-4">We're proud to have earned the trust of our clients.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow">
+                    <p class="text-gray-600 italic mb-4">"Insurance Megacorp made switching so easy and saved me hundreds on my auto policy. Their customer service is top-notch!"</p>
+                    <div class="font-bold text-gray-800">- Sarah J.</div>
+                    <div class="text-sm text-yellow-500 mt-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow">
+                    <p class="text-gray-600 italic mb-4">"When our basement flooded, Insurance Megacorp was there for us. The claims process was straightforward and fair. I can't recommend them enough."</p>
+                    <div class="font-bold text-gray-800">- Michael B.</div>
+                    <div class="text-sm text-yellow-500 mt-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow">
+                    <p class="text-gray-600 italic mb-4">"Getting life insurance seemed daunting, but my Insurance Megacorp agent explained everything clearly and helped me find the perfect plan for my family."</p>
+                    <div class="font-bold text-gray-800">- Emily R.</div>
+                    <div class="text-sm text-yellow-500 mt-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-blue-900 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Insurance Megacorp</h3>
+                    <p class="text-blue-200">Your trusted partner in protection.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="#home" class="hover:text-yellow-400">Home</a></li>
+                        <li class="mb-2"><a href="#insurance" class="hover:text-yellow-400">Insurance</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-yellow-400">Claims Center</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-yellow-400">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <p class="text-blue-200 mb-2"><i class="fas fa-phone mr-2"></i> 1-800-555-ACME</p>
+                    <p class="text-blue-200 mb-2"><i class="fas fa-envelope mr-2"></i> contact@acmeinsurance.com</p>
+                    <p class="text-blue-200"><i class="fas fa-map-marker-alt mr-2"></i> 123 Insurance Way, Anytown, USA</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-blue-700 my-8">
+            <div class="text-center text-blue-300">
+                &copy; 2024 Acme Insurance Company. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chat Bubble -->
+    <button id="chat-bubble" class="bg-blue-700 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg cta-button">
+        <i class="fas fa-comments fa-2x"></i>
+    </button>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden modal-backdrop">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-8 modal-panel">
+            <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Member Log In</h2>
+            <form id="login-form">
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input type="text" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your username">
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password">
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="submit" class="w-full bg-blue-700 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-800 cta-button">Log In</button>
+                    <button type="button" id="cancel-login" class="ml-4 text-gray-600 hover:text-gray-900">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chat-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end justify-end p-4 hidden modal-backdrop">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg h-3/4 flex flex-col modal-panel">
+            <header class="bg-blue-700 text-white p-4 flex justify-between items-center rounded-t-lg">
+                <h2 class="text-lg font-semibold">Chat with an Agent</h2>
+                <button id="close-chat" class="text-white hover:text-gray-200 text-2xl">&times;</button>
+            </header>
+            <div id="chat-log" class="flex-1 p-4 overflow-y-auto bg-gray-50">
+                <!-- Chat messages will appear here -->
+                 <div class="flex mb-4">
+                    <div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-xs">
+                        <p>Hello! How can I help you today?</p>
+                    </div>
+                </div>
+            </div>
+            <form id="chat-form" class="p-4 border-t border-gray-200 flex">
+                <input type="text" id="chat-input" class="w-full px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message...">
+                <button type="submit" class="bg-blue-700 text-white font-bold py-2 px-4 rounded-r-md hover:bg-blue-800">Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // --- DOM Element Variables ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const loginLink = document.getElementById('login-link');
+        const mobileLoginLink = document.getElementById('mobile-login-link');
+        const loginModal = document.getElementById('login-modal');
+        const loginForm = document.getElementById('login-form');
+        const cancelLoginButton = document.getElementById('cancel-login');
+        const desktopAuthLinks = document.getElementById('desktop-auth-links');
+        const mobileAuthLinks = document.getElementById('mobile-auth-links');
+        const chatBubble = document.getElementById('chat-bubble');
+        const chatModal = document.getElementById('chat-modal');
+        const closeChatButton = document.getElementById('close-chat');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatLog = document.getElementById('chat-log');
+
+        // --- Functions ---
+        
+        // Function to show a modal
+        function showModal(modal) {
+            modal.classList.remove('hidden');
+        }
+
+        // Function to hide a modal
+        function hideModal(modal) {
+            modal.classList.add('hidden');
+        }
+
+        // Function to handle the login process
+        function handleLogin(e) {
+            e.preventDefault();
+            hideModal(loginModal);
+            desktopAuthLinks.innerHTML = `<div class="flex items-center"><span class="text-gray-700 font-semibold">Welcome, John Doe</span></div>`;
+            mobileAuthLinks.innerHTML = `<div class="py-2 text-gray-700 font-semibold">Welcome, John Doe</div>`;
+        }
+
+        // Function to handle chat submission
+        function handleChatMessage(e) {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            // Display user message
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'flex justify-end mb-4';
+            userMessageDiv.innerHTML = `
+                <div class="bg-blue-600 text-white p-3 rounded-lg max-w-xs">
+                    <p>${message}</p>
+                </div>`;
+            chatLog.appendChild(userMessageDiv);
+            
+            chatInput.value = '';
+            chatLog.scrollTop = chatLog.scrollHeight; // Scroll to bottom
+        }
+
+        // --- Event Listeners ---
+
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#') && this.getAttribute('href').length > 1) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Login Modal Listeners
+        loginLink.addEventListener('click', (e) => { e.preventDefault(); showModal(loginModal); });
+        mobileLoginLink.addEventListener('click', (e) => { e.preventDefault(); showModal(loginModal); });
+        loginForm.addEventListener('submit', handleLogin);
+        cancelLoginButton.addEventListener('click', () => hideModal(loginModal));
+        loginModal.addEventListener('click', (e) => { if (e.target === loginModal) hideModal(loginModal); });
+
+        // Chat Modal Listeners
+        chatBubble.addEventListener('click', () => showModal(chatModal));
+        closeChatButton.addEventListener('click', () => hideModal(chatModal));
+        chatModal.addEventListener('click', (e) => { if (e.target === chatModal) hideModal(chatModal); });
+        chatForm.addEventListener('submit', handleChatMessage);
+
+    </script>
+
+</body>
+</html>
