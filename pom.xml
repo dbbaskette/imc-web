@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.baskettecase</groupId>
 	<artifactId>imc-web</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<name>imc-web</name>
 	<description>Insurance MegaCorp Web Application</description>
 	<url/>
