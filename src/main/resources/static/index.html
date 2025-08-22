@@ -586,8 +586,26 @@
                         chatSessionId = data.sessionId;
                     }
                     
+                    // Extract content from structured response
+                    let responseContent = data.response;
+                    if (typeof data.response === 'object' && data.response !== null) {
+                        if (data.response.type === 'text') {
+                            responseContent = data.response.content;
+                        } else if (data.response.type === 'dataTable') {
+                            // For dataTable, pass the structured object for table rendering
+                            responseContent = {
+                                type: 'dataTable',
+                                data: data.response.content.data,
+                                columns: data.response.content.columns
+                            };
+                        } else {
+                            // Fallback for unknown structured response types
+                            responseContent = data.response.content || JSON.stringify(data.response);
+                        }
+                    }
+                    
                     // Display bot response
-                    addMessage("Insurance Assistant", data.response, false);
+                    addMessage("Insurance Assistant", responseContent, false);
                 } else {
                     addMessage("System", data.error || "Failed to get response from chatbot.", false);
                 }
